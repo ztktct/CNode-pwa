@@ -1,0 +1,34 @@
+  //文字溢出省略
+@mixin ellipsis($lines) {
+  @if($lines==1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @else {
+    //多行省略,webkit内核
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+  }
+}
+%ellipsis1{
+  @include ellipsis(１);
+}
+
+// 一像素边框
+%one-px-border{
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    left:0;
+    right:0;
+    bottom: 0;
+    border-top: 1px solid #e5e5e5;
+    transform: scaleY(.5);
+  }
+}
